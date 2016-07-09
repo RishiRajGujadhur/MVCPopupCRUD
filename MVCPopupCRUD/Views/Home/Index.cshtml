@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Contact List";
+}
+
+<h2>Contact List</h2>
+@Html.ActionLink("Add New Contact", "Save", "Home", null, new { @style = "font-size:22px;", @class = "popup" })
+
+@*This is the panel that we are updating/populating using jquery .html() method from LoadContacts() method in dotnetawesome.CRUDContacts*@ 
+<div id="update_panel">
+
+</div>
+
+@* Add Jquery UI Css *@
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<style>
+    /*This is optional, I have added this for make looks good*/
+    html, body, footer, #body {
+        background-color: #fff;
+    }
+
+    .ui-widget-header {
+        border: none !important;
+        background: none !important;
+        color: #222222;
+        font-weight: bold;
+    }
+
+    .ui-state-default, .ui-state-hover {
+        border: none !important;
+        background: none !important;
+    }
+
+    .ui-dialog {
+        webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    }
+
+    h2 {
+        margin-top: 0px;
+        font-size: 30px;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .failed {
+        color: red;
+    }
+</style>
+@section Scripts{
+    @*//Add Jquery UI JS*@
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+   
+<script src="~/dotnetawesome.CRUDContacts.js"></script>
+}

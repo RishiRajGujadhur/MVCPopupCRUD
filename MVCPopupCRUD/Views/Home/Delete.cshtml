@@ -1,0 +1,33 @@
+﻿@model MVCPopupCRUD.Contact
+
+<h2> Delete Contact </h2>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <table class="table table-responsive">
+        <tr>
+            <td>@Html.DisplayNameFor(a => a.ContactPerson)</td>
+            <td>@Html.DisplayFor(a => a.ContactPerson)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(a => a.ContactNo)</td>
+            <td>@Html.DisplayFor(a => a.ContactNo)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(a => a.CountryID)</td>
+            <td>@Html.DisplayFor(a => a.CountryName)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(a => a.StateID)</td>
+            <td>@Html.DisplayFor(a => a.StateName)</td>
+        </tr>
+    </table>
+</div>
+@using (Html.BeginForm("delete", "home", FormMethod.Post, new { id = "deleteForm" }))
+{
+    <p>
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(a => a.ContactID)
+        <input type="submit" value="Delete" />
+    </p>
+}
+

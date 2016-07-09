@@ -1,0 +1,82 @@
+﻿@model MVCPopupCRUD.Contact
+<h2>Save Contact</h2>
+    
+ @*Writes an opening <form>
+    tag to the response and sets the action tag to the
+    //     specified controller and action. The form uses the specified HTTP method
+    //     and includes the HTML attributes.
+
+         Parameters:
+     actionName:
+        //     The name of the action method. Example: "Save"
+
+     controllerName:
+        //     The name of the controller. Example: "Home"
+
+     method:
+        //     The HTTP method for processing the form, either GET or POST. Example: FormMethod.Post
+
+     htmlAttributes:
+        //     An object that contains the HTML attributes to set for the element. Example new { role = "form", id = "saveForm" }
+*@
+
+
+    @using (Html.BeginForm("Save", "Home", FormMethod.Post, new { role = "form", id = "saveForm" }))
+    {
+        @*here role = "form" for bootstrap design (optional) *@
+
+        //Returns an unordered list (ul element) of validation messages that are in
+        //     the System.Web.Mvc.ModelStateDictionary object and optionally displays only
+        //     model-level errors.
+        @Html.ValidationSummary(true)
+        // Generates a hidden form field (anti-forgery token) that is validated when
+        //     the form is submitted.
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @*Returns an HTML hidden input element for each property in the object that
+                is represented by the specified expression.*@
+            @Html.HiddenFor(model => model.ContactID)
+            @Html.LabelFor(model => model.ContactPerson)
+            @Html.TextBoxFor(model => model.ContactPerson, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ContactNo)
+            @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CountryID)
+
+            @*.DropDownListFor:
+                 Returns an HTML select element for each property in the object that is represented
+                by the specified expression using the specified list items, option label,
+                 and HTML attributes.
+
+                expression:
+                         An expression that identifies the object that contains the properties to
+                         display. Example: model => model.CountryID
+
+                    selectList:
+                         A collection of System.Web.Mvc.SelectListItem objects that are used to populate
+                         the drop-down list. Example:  ViewBag.Countries as SelectLists
+
+                    optionLabel:
+                        The text for a default empty item. This parameter can be null. Example: "Select Country"
+
+                    htmlAttributes:
+                        An object that contains the HTML attributes to set for the element; example: new { @class = "form-control"
+                         Example: new { @class = "form-control" }
+            *@
+
+
+            @Html.DropDownListFor(model => model.CountryID, ViewBag.Countries as SelectList, "Select Country", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StateID)
+
+            @Html.DropDownListFor(model => model.StateID, ViewBag.States as SelectList, "Select State", new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+        @Html.ActionLink("Back To List", "Index", null, new { @style = "margin-left:50px; font-weight:bold;" })
+        <div id="msg"></div>
+    }
